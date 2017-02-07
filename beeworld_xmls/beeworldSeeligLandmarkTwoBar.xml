@@ -1,0 +1,90 @@
+<BeeworldConfigOld>
+	<System>
+		<NumConnections value="2"/>
+		<DisplayScaling value="0.0"/>
+		<Blur value="false"/>
+		<Lighting value="false"/>
+		<Log path=""/>
+		<DT value="0.1"/>
+	</System>
+	<BeeEye>
+		<Vertical FOV="180" Resolution="32"/>
+		<Horizontal FOV="360" Resolution="48"/>
+	</BeeEye>
+	<BeeInitialState>
+		<Time value="0"/>
+		<X value="0"/>
+		<Y value="0"/>
+		<Z value="15"/>
+		<Roll value="0"/>
+		<Pitch value="0"/>
+		<Yaw value="0"/>
+		<Speed value="0.0"/>
+		<TransverseSpeed value="0"/>
+	</BeeInitialState>
+	<Controllers>
+		<Controller source="yaw" target="bee" port="Yaw"/>
+	</Controllers>
+	<World>
+		<Plane name="plane1">
+			<Location x="-1.0" y="10" z="0"/>
+			<Rotation xAxis="0" yAxis="0" zAxis="-90"/>
+			<Scaling x="1000" y="3.0" z="30"/>
+			<Texture>
+				<Checked name="pattern1">
+					<Frequency x="1" y=".1" z=".0000001"/>
+					<Offset x="1.57" y="0.01" z="1.57"/>
+					<Motion x="0" y="0" z="0"/>
+					<LightCol r="0.8" g="0.8" b="0.8"/>
+					<DarkCol r="0.8" g="0.8" b="0.8"/>
+                    			<isSine value="0"/>
+				</Checked>
+			</Texture>
+		</Plane>
+		<Plane name="plane2">
+			<Location x="-1.0" y="-10" z="0"/>
+			<Rotation xAxis="0" yAxis="0" zAxis="-90"/>
+			<Scaling x="1000" y="3.0" z="30"/>
+			<Texture>
+				<Checked name="pattern1">
+					<Frequency x="1" y=".1" z=".0000001"/>
+					<Offset x="1.57" y="0.01" z="1.57"/>
+					<Motion x="0" y="0" z="0"/>
+					<LightCol r="0.8" g="0.8" b="0.8"/>
+					<DarkCol r="0.8" g="0.8" b="0.8"/>
+                    			<isSine value="0"/>
+				</Checked>
+			</Texture>
+		</Plane>
+		<Plane name="floor">
+			<Location x="-1000000" y="-500000" z="0.02"/>
+			<Rotation xAxis="0" yAxis="90" zAxis="0"/>
+			<Scaling x="1000000" y="1000000" z="2000000"/>
+			<Texture>
+				<Checked name="pattern2">
+					<Frequency x="0.00001" y="0.1" z="5"/>
+					<Offset x="0.01" y="0.01" z="0.01"/>
+					<Motion x="0" y="0" z="0"/>
+					<LightCol r="0.0" g="0.0" b="0.0"/>
+					<DarkCol r="0.0" g="0.0" b="0.0"/>
+                    			<isSine value="0"/>
+				</Checked>
+			</Texture>
+		</Plane>
+		<Plane name="ceiling">
+			<Location x="-1000000" y="-500000" z="30.0"/>
+			<Rotation xAxis="0" yAxis="90" zAxis="0"/>
+			<Scaling x="1000000" y="1000000" z="2000000"/>
+			<Texture>
+				<Checked name="pattern2">
+					<Frequency x="0.00001" y="0.1" z="5"/>
+					<Offset x="0.01" y="0.01" z="0.01"/>
+					<Motion x="0" y="0" z="0"/>
+					<LightCol r="0.0" g="0.0" b="0.0"/>
+					<DarkCol r="0.0" g="0.0" b="0.0"/>
+                    			<isSine value="0"/>
+				</Checked>
+			</Texture>
+		</Plane>
+	</World>
+</BeeworldConfigOld>
