@@ -19,7 +19,7 @@ Beeworld is configured by XML files which are loaded once the GUI is running. Th
 
 Please note, by default the XML files specify to hide the bee view in the GUI for speed reasons. This can be changed by modifying the following tag in the XML files to (default value is 0.0):
 
-```<DisplayScaling value="1.0"/>``` 
+``` <DisplayScaling value="1.0"/> ``` 
 
 ### Octave/Matlab / Circular Statistics Toolbox (analysis)
 
@@ -67,22 +67,33 @@ We provide a simple python script for loading SML log files - this can be found 
 
 ### Ring attractor vs real heading plots
 
-The log data is logged under your output directory ```/log/``` folder (see SpineCreator setup if you don't know where this is for static model, for learning this is where you asked the script to output to). Simply load into your favourite plotting software (I use Veusz - http://home.gna.org/veusz/) as binary data and modulo by 1080 deg before plotting. the relevant logs are:
+The log data is logged under your output directory ``` /log/ ``` folder (see SpineCreator setup if you don't know where this is for static model, for learning this is where you asked the script to output to). Simply load into your favourite plotting software (I use Veusz - http://home.gna.org/veusz/) as binary data and modulo by 1080 deg before plotting. the relevant logs are:
 
-Ring attractor direction: ```ring_direction_av_log*```
+Ring attractor direction: ``` ring_direction_av_log* ```
 
-Actual heading direction: ```changes_for_batch_a_log*```
+Actual heading direction: ``` changes_for_batch_a_log* ```
+
+### Correlation analysis of the ring attractor vs the actual heading
+
+Analysis of the correlation between the ring attractor direction and the actual heading is undertaken by ``` analyse_corr.py ```, which can be found in each of the results directories under ``` data ```. This script generates two ``` .csv ``` files, ``` corr_mean_sd.csv ``` with the means and standard deviations for each run, and ``` corr_all.csv ``` for the last simulation run (runJ) with three columns: change in ring direction over each 10ms period, change in actual direction over the same, absolute actual direction. In addition a plot of these values with the final column represented by colour, as seen in the paper, is produced.
 
 ### Circular mean and sd
 
 We provide an Octave script to analyse the mean and standard deviation of a single simulation run at:
 
-```data/analyse_mean_and_sd.m```
+``` data/analyse_mean_and_sd.m ```
 
-The path to the simulation run logs must be modified before running this script.
+The path to the simulation run logs must be modified to analyse each simulation run.
 
 ### Non-parametric comparisons
 
-We provide a script to analyse the non-parametric comparisons at:
+We provide a script to analyse the non-parametric variance analysis comparisons at:
+
+``` data/non_param_analysis_of_learning.m ```
+
+### Analysis of learned weights
+
+The first stage in analysing the learned weights is to compute the preferred ring directions of the weights for each of the input receptive fields. This is undertaken using the ``` analyse_ring.py ``` script which is found in the ``` data/clustering_analysis/data_processing_scripts/ ``` directory. Note that this script requires ``` sml_log_parser.py ``` file in the same directory to run, and only analyses logs in the same directory as it by default. This script outputs two ``` .csv ``` files: ``` datal.csv ``` and ``` datar.csv ```. These files contain one column for each of the left and right RF respectively, with the rows representing each millisecond of the simulation. These logs can be used to create the polar plots from the paper.
 
 
+The second stage of analysis is the clustering analysis, and this is undertaken by ``` cluster_data.py ``` in the ``` data/clustering_analysis/data_processing_scripts/ ``` directory. This script takes the output of ``` analyse_ring.py ``` as input, so must be in the same directory as that output by default. This script generates cluster plots as seen in the paper.
