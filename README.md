@@ -1,5 +1,5 @@
 # CX neural compass paper
-Full files for reproducing the experiments in the PLOS One paper: A Computational Model of the Integration of Landmarks and Motion in the Insect Central Complex
+Full files for reproducing the experiments in the PLOS One paper: **A Computational Model of the Integration of Landmarks and Motion in the Insect Central Complex**
 
 Linux only supported
 
