@@ -59,6 +59,10 @@ For the static weight experiments simply load the .proj file in ```model_static`
 
 As the learning experiments require batched runs we provide a Bash script to simplify simulation. The script can be found with the model in ```model_learn``` and is named ```batch_bee.sh``` (please forgive the bee naming convention for Drosophila simulations!). running this script without arguments will produce instructions for usage. 
 
+## Data logs
+
+To save re-running all experiments the logs for all the simulations described in the paper are in this repository. The logs for Experiments 1 & 2 can be found in ``` data/static_weight_logs ``` and the logs for Experiment 3 are in individual directories in ``` data ```.
+
 ## Analysis
 
 ### Loading SpineML log files into Python and Matlab/Octave
