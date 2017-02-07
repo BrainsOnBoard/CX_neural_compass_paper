@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="LINsub">
+  <Dynamics initial_regime="dummy">
+   <Regime name="dummy">
+    <TimeDerivative variable="a">
+     <MathInline>((in_pos-in_neg-a_neg)-a)*inv_tau</MathInline>
+    </TimeDerivative>
+    <TimeDerivative variable="b">
+     <MathInline>((in_neg-in_pos-b_neg)-b)*inv_tau</MathInline>
+    </TimeDerivative>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="a">
+      <MathInline>0</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>a &lt; 0</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="b">
+      <MathInline>0</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>b&lt;0</MathInline>
+     </Trigger>
+    </OnCondition>
+   </Regime>
+   <Alias dimension="?" name="out">
+    <MathInline>a</MathInline>
+   </Alias>
+   <StateVariable dimension="?" name="a"/>
+   <StateVariable dimension="?" name="b"/>
+  </Dynamics>
+  <AnalogReducePort dimension="?" name="in_pos" reduce_op="+"/>
+  <AnalogReducePort dimension="?" name="in_neg" reduce_op="+"/>
+  <AnalogSendPort name="a"/>
+  <AnalogSendPort name="b"/>
+  <AnalogReducePort dimension="?" name="a_neg" reduce_op="+"/>
+  <AnalogReducePort dimension="?" name="b_neg" reduce_op="+"/>
+  <Parameter dimension="?" name="inv_tau"/>
+ </ComponentClass>
+</SpineML>

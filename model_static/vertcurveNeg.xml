@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<SpineML xmlns="http://nineml.org/9ML/0.1">
+ <LayoutClass name="vertcurveNeg">
+  <Parameter dimension="?" name="numNeurons"/>
+  <Parameter dimension="?" name="length"/>
+  <Parameter dimension="?" name="space"/>
+  <Parameter dimension="?" name="curve"/>
+  <Spatial>
+   <Regime name="">
+    <Transform dimension="??" type="translate" variable="z" order="1">
+     <MathInline>mod(t,length)*space</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="y" order="2">
+     <MathInline>floor(t/length)</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="t" order="3">
+     <MathInline>t+1</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="x" order="4">
+     <MathInline>-sin(mod(t,length)*3.14/length)*curve</MathInline>
+    </Transform>
+   </Regime>
+   <StateVariable dimension="?" name="x"/>
+   <StateVariable dimension="?" name="y"/>
+   <StateVariable dimension="?" name="z"/>
+   <StateVariable dimension="?" name="t"/>
+  </Spatial>
+ </LayoutClass>
+</SpineML>

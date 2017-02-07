@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="accumulator">
+  <Dynamics initial_regime="accum">
+   <Regime name="accum">
+    <TimeDerivative variable="out">
+     <MathInline>rate/1000.0</MathInline>
+    </TimeDerivative>
+   </Regime>
+   <StateVariable dimension="?" name="out"/>
+  </Dynamics>
+  <AnalogSendPort name="out"/>
+  <Parameter dimension="?" name="rate"/>
+ </ComponentClass>
+</SpineML>

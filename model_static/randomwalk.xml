@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="randomwalk">
+  <Dynamics initial_regime="sum">
+   <Regime name="sum">
+    <TimeDerivative variable="yaw">
+     <MathInline>randomNormal*scale</MathInline>
+    </TimeDerivative>
+   </Regime>
+   <StateVariable dimension="?" name="yaw"/>
+  </Dynamics>
+  <AnalogSendPort name="yaw"/>
+  <Parameter dimension="?" name="scale"/>
+ </ComponentClass>
+</SpineML>

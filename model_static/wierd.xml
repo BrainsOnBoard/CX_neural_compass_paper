@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<SpineML xmlns="http://nineml.org/9ML/0.1">
+ <LayoutClass name="wierd">
+  <Parameter dimension="?" name="numNeurons"/>
+  <Parameter dimension="?" name="length"/>
+  <Parameter dimension="?" name="space"/>
+  <Parameter dimension="?" name="curve"/>
+  <Parameter dimension="?" name="dist"/>
+  <Parameter dimension="?" name="width"/>
+  <Spatial>
+   <Regime name="">
+    <Transform dimension="??" type="translate" variable="z" order="2">
+     <MathInline>mod(t,length/2)*space</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="y" order="3">
+     <MathInline>floor(t/length)</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="t" order="5">
+     <MathInline>t+1</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="x" order="4">
+     <MathInline>floor(temp/length/2)*dist</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="temp" order="1">
+     <MathInline>mod(t,length)</MathInline>
+    </Transform>
+   </Regime>
+   <StateVariable dimension="?" name="x"/>
+   <StateVariable dimension="?" name="y"/>
+   <StateVariable dimension="?" name="z"/>
+   <StateVariable dimension="?" name="t"/>
+   <StateVariable dimension="?" name="temp"/>
+  </Spatial>
+ </LayoutClass>
+</SpineML>
