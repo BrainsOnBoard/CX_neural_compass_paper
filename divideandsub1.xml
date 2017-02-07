@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="divideandsub1">
+  <Dynamics initial_regime="dummy">
+   <Regime name="dummy">
+    <TimeDerivative variable="top">
+     <MathInline>(-top+in_top)/tau</MathInline>
+    </TimeDerivative>
+    <TimeDerivative variable="bot">
+     <MathInline>(-bot+in_bot)/tau</MathInline>
+    </TimeDerivative>
+    <TimeDerivative variable="sub_sv">
+     <MathInline>(-sub_sv+sub)/tau</MathInline>
+    </TimeDerivative>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="top">
+      <MathInline>min</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>top &lt; min</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="bot">
+      <MathInline>min*10.0</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>bot &lt; min*10.0</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="sub_sv">
+      <MathInline>top/bot</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>top/bot-sub_sv&lt;0</MathInline>
+     </Trigger>
+    </OnCondition>
+   </Regime>
+   <Alias dimension="?" name="out">
+    <MathInline>top/bot-sub_sv</MathInline>
+   </Alias>
+   <StateVariable dimension="?" name="top"/>
+   <StateVariable dimension="?" name="bot"/>
+   <StateVariable dimension="?" name="sub_sv"/>
+  </Dynamics>
+  <AnalogReducePort dimension="?" name="in_top" reduce_op="+"/>
+  <AnalogReducePort dimension="?" name="in_bot" reduce_op="+"/>
+  <AnalogReducePort dimension="?" name="sub" reduce_op="+"/>
+  <AnalogSendPort name="out"/>
+  <AnalogSendPort name="top"/>
+  <AnalogSendPort name="bot"/>
+  <Parameter dimension="?" name="tau"/>
+  <Parameter dimension="?" name="min"/>
+ </ComponentClass>
+</SpineML>

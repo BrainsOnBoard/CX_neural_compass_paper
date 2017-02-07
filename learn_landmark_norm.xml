@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="weight_update" islearning="1" name="learn landmark norm">
+  <Dynamics initial_regime="blank">
+   <Regime name="blank">
+    <TimeDerivative variable="w">
+     <MathInline>in*(post*acquire_speedup-sum_w+1.1*w)*alpha</MathInline>
+    </TimeDerivative>
+    <OnCondition target_regime="blank">
+     <StateAssignment variable="w">
+      <MathInline>0</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>w&lt;0</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="blank">
+     <StateAssignment variable="w">
+      <MathInline>1</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>w>1</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="blank">
+     <StateAssignment variable="w">
+      <MathInline>w/(sum_w+0.1)*theta</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>sum_w > 0.1</MathInline>
+     </Trigger>
+    </OnCondition>
+   </Regime>
+   <Alias dimension="?" name="out">
+    <MathInline>in*w*max_strength</MathInline>
+   </Alias>
+   <StateVariable dimension="?" name="w"/>
+  </Dynamics>
+  <AnalogReducePort dimension="?" name="in" reduce_op="+"/>
+  <AnalogSendPort name="out"/>
+  <AnalogSendPort name="w" post="1"/>
+  <AnalogReducePort dimension="?" name="sum_w" reduce_op="+"/>
+  <AnalogReducePort dimension="?" name="post" post="1" reduce_op="+"/>
+  <Parameter dimension="?" name="alpha"/>
+  <Parameter dimension="?" name="max_strength"/>
+  <Parameter dimension="?" name="acquire_speedup"/>
+  <Parameter dimension="?" name="theta"/>
+ </ComponentClass>
+</SpineML>

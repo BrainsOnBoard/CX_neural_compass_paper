@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="mult1">
+  <Dynamics initial_regime="dummy">
+   <Regime name="dummy"/>
+   <Alias dimension="?" name="out">
+    <MathInline>in_1*in_2</MathInline>
+   </Alias>
+   <Alias dimension="?" name="pass1">
+    <MathInline>in_1</MathInline>
+   </Alias>
+   <Alias dimension="?" name="pass2">
+    <MathInline>in_2</MathInline>
+   </Alias>
+  </Dynamics>
+  <AnalogReducePort dimension="?" name="in_1" reduce_op="+"/>
+  <AnalogReducePort dimension="?" name="in_2" reduce_op="+"/>
+  <AnalogSendPort name="out"/>
+  <AnalogSendPort name="pass1"/>
+  <AnalogSendPort name="pass2"/>
+ </ComponentClass>
+</SpineML>

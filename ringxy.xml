@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<SpineML xmlns="http://nineml.org/9ML/0.1">
+ <LayoutClass name="ringxy">
+  <Parameter dimension="?" name="numNeurons"/>
+  <Parameter dimension="?" name="scale"/>
+  <Spatial>
+   <Regime name="">
+    <Transform dimension="??" type="translate" variable="y" order="1">
+     <MathInline>cos(t*6.28/16.0)*scale</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="x" order="2">
+     <MathInline>sin(t*6.28/16.0)*scale</MathInline>
+    </Transform>
+    <Transform dimension="??" type="translate" variable="t" order="3">
+     <MathInline>t+1</MathInline>
+    </Transform>
+   </Regime>
+   <StateVariable dimension="?" name="x"/>
+   <StateVariable dimension="?" name="y"/>
+   <StateVariable dimension="?" name="z"/>
+   <StateVariable dimension="?" name="t"/>
+  </Spatial>
+ </LayoutClass>
+</SpineML>

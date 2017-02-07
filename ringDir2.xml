@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="ringDir2">
+  <Dynamics initial_regime="dummy">
+   <Regime name="dummy">
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="prev_av">
+      <MathInline>av_curr</MathInline>
+     </StateAssignment>
+     <StateAssignment variable="offset">
+      <MathInline>offset+360</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>av_curr&lt;0 &amp;&amp; prev_av>0 &amp;&amp; (prev_av-av_curr)>200</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="prev_av">
+      <MathInline>av_curr</MathInline>
+     </StateAssignment>
+     <StateAssignment variable="offset">
+      <MathInline>offset-360</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>av_curr>0 &amp;&amp; prev_av&lt;0 &amp;&amp; (av_curr-prev_av)>200</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="prev_av">
+      <MathInline>av_curr</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>!(av_curr>0 &amp;&amp; prev_av&lt;0 &amp;&amp; (av_curr-prev_av)>200) &amp;&amp; !(av_curr&lt;0 &amp;&amp; prev_av>0 &amp;&amp; (prev_av-av_curr)>200)</MathInline>
+     </Trigger>
+    </OnCondition>
+   </Regime>
+   <Alias dimension="?" name="av">
+    <MathInline>atan2(y_in,x_in)*57.2957795131+offset</MathInline>
+   </Alias>
+   <Alias dimension="?" name="av_curr">
+    <MathInline>atan2(y_in,x_in)*57.2957795131</MathInline>
+   </Alias>
+   <StateVariable dimension="?" name="prev_av"/>
+   <StateVariable dimension="?" name="offset"/>
+   <StateVariable dimension="?" name="test"/>
+  </Dynamics>
+  <AnalogReducePort dimension="?" name="x_in" reduce_op="+"/>
+  <AnalogSendPort name="av"/>
+  <AnalogReducePort dimension="?" name="y_in" reduce_op="+"/>
+ </ComponentClass>
+</SpineML>

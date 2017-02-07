@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<SpineML xsi:schemaLocation="http://www.shef.ac.uk/SpineMLComponentLayer SpineMLComponentLayer.xsd" xmlns="http://www.shef.ac.uk/SpineMLComponentLayer" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+ <ComponentClass type="neuron_body" name="derivative">
+  <Dynamics initial_regime="dummy">
+   <Regime name="dummy">
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="out_r">
+      <MathInline>(in-prev)</MathInline>
+     </StateAssignment>
+     <StateAssignment variable="prev">
+      <MathInline>in</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>(in-prev)>0</MathInline>
+     </Trigger>
+    </OnCondition>
+    <OnCondition target_regime="dummy">
+     <StateAssignment variable="out_l">
+      <MathInline>(prev-in)</MathInline>
+     </StateAssignment>
+     <StateAssignment variable="prev">
+      <MathInline>in</MathInline>
+     </StateAssignment>
+     <Trigger>
+      <MathInline>(in-prev)&lt;0</MathInline>
+     </Trigger>
+    </OnCondition>
+   </Regime>
+   <StateVariable dimension="?" name="prev"/>
+   <StateVariable dimension="?" name="out_r"/>
+   <StateVariable dimension="?" name="out_l"/>
+  </Dynamics>
+  <AnalogReducePort dimension="?" name="in" reduce_op="+"/>
+  <AnalogSendPort name="out_r"/>
+  <AnalogSendPort name="out_l"/>
+ </ComponentClass>
+</SpineML>

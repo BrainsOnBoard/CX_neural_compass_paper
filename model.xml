@@ -1,0 +1,2096 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LL:SpineML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.shef.ac.uk/SpineMLNetworkLayer" xmlns:LL="http://www.shef.ac.uk/SpineMLLowLevelNetworkLayer" xsi:schemaLocation="http://www.shef.ac.uk/SpineMLLowLevelNetworkLayer SpineMLLowLevelNetworkLayer.xsd http://www.shef.ac.uk/SpineMLNetworkLayer SpineMLNetworkLayer.xsd" name="Visual guidance">
+    <LL:Population>
+        <LL:Neuron name="changes for batch" size="1" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="100"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+            <LL:Input src="random walk" src_port="yaw" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="changes pos wall" size="1" url="LIF2.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="tau_adap" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="a" dimension="V"/>
+            <Property name="adap" dimension="?"/>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="changes neg wall" size="1" url="accumulator.xml">
+            <Property name="rate" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="out" dimension="?"/>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="world" size="1536" url="passthroughNB.xml"/>
+        <Layout url="grid.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="32"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="pr and lamina left" size="768" url="LIN_adap.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="8"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="tau_adap" dimension="?">
+                <FixedValue value="15"/>
+            </Property>
+            <Property name="a" dimension="V">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="adap" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="out" dimension="?"/>
+            <LL:Input src="world" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection99.bin" num_connections="768" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurveNeg.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1.5"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="5"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="pr and lamina right" size="768" url="LIN_adap.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="8"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="tau_adap" dimension="?">
+                <FixedValue value="15"/>
+            </Property>
+            <Property name="a" dimension="V">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="adap" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="out" dimension="?"/>
+            <LL:Input src="world" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection100.bin" num_connections="768" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1.5"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="5"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="left fast delay" size="768" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="5"/>
+            </Property>
+            <Property name="a" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <LL:Input src="pr and lamina left" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1.3"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="-3"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="left slow delay" size="768" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="15"/>
+            </Property>
+            <Property name="a" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <LL:Input src="pr and lamina left" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1.2"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="-2.75"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="left no delay" size="768" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="a" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <LL:Input src="pr and lamina left" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1.1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="-2.5"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="fast result left" size="768" url="mult.xml">
+            <LL:Input src="left fast delay" src_port="a" dst_port="in_1">
+                <ConnectionList>
+                    <BinaryFile file_name="connection101.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="left no delay" src_port="a" dst_port="in_2">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="slow result left" size="768" url="mult.xml">
+            <LL:Input src="left slow delay" src_port="a" dst_port="in_1">
+                <ConnectionList>
+                    <BinaryFile file_name="connection102.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="left no delay" src_port="a" dst_port="in_2">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="right fast delay" size="768" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="5"/>
+            </Property>
+            <Property name="a" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <LL:Input src="pr and lamina right" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1.3"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="3"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="right slow delay" size="768" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="15"/>
+            </Property>
+            <Property name="a" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <LL:Input src="pr and lamina right" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1.2"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="2.75"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="right no delay" size="768" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="a" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <LL:Input src="pr and lamina right" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1.1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="2.5"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="fast result right" size="768" url="mult.xml">
+            <LL:Input src="right fast delay" src_port="a" dst_port="in_1">
+                <ConnectionList>
+                    <BinaryFile file_name="connection103.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="right no delay" src_port="a" dst_port="in_2">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="slow result right" size="768" url="mult.xml">
+            <LL:Input src="right slow delay" src_port="a" dst_port="in_1">
+                <ConnectionList>
+                    <BinaryFile file_name="connection104.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="right no delay" src_port="a" dst_port="in_2">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="r slow result left" size="768" url="mult.xml">
+            <LL:Input src="left no delay" src_port="a" dst_port="in_1">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="left slow delay" src_port="a" dst_port="in_2">
+                <ConnectionList>
+                    <BinaryFile file_name="connection105.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="r fast result left" size="768" url="mult.xml">
+            <LL:Input src="left no delay" src_port="a" dst_port="in_1">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="left fast delay" src_port="a" dst_port="in_2">
+                <ConnectionList>
+                    <BinaryFile file_name="connection106.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="-1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="r fast result right" size="768" url="mult.xml">
+            <LL:Input src="right no delay" src_port="a" dst_port="in_1">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="right fast delay" src_port="a" dst_port="in_2">
+                <ConnectionList>
+                    <BinaryFile file_name="connection107.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="r slow result right" size="768" url="mult.xml">
+            <LL:Input src="right no delay" src_port="a" dst_port="in_1">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="right slow delay" src_port="a" dst_port="in_2">
+                <ConnectionList>
+                    <BinaryFile file_name="connection108.bin" num_connections="736" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurvePos.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="24"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="AV prog r" size="1" url="divideandsub.xml">
+            <Property name="tau" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="min" dimension="?">
+                <FixedValue value="0.001"/>
+            </Property>
+            <Property name="top" dimension="?"/>
+            <Property name="bot" dimension="?"/>
+            <Property name="sub_sv" dimension="?"/>
+            <LL:Input src="fast result right" src_port="out" dst_port="in_top">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="slow result right" src_port="out" dst_port="in_bot">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="OM right" size="1" url="LINsub.xml">
+            <Property name="inv_tau" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+            <Property name="b" dimension="?"/>
+            <LL:Input src="slow result right" src_port="out" dst_port="in_pos">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="r slow result right" src_port="out" dst_port="in_neg">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="fast result right" src_port="out" dst_port="in_pos">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="r fast result right" src_port="out" dst_port="in_neg">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="AV reg r">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="OM right to AV reg r Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1000"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="OM right to AV reg r Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="sub"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="AV prog r">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="OM right to AV prog r Synapse 0 weight_update" url="static_weight.xml" input_src_port="b" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1000"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="OM right to AV prog r Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="sub"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="AV reg r" size="1" url="divideandsub.xml">
+            <Property name="tau" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="min" dimension="?">
+                <FixedValue value="0.001"/>
+            </Property>
+            <Property name="top" dimension="?"/>
+            <Property name="bot" dimension="?"/>
+            <Property name="sub_sv" dimension="?"/>
+            <LL:Input src="r fast result right" src_port="out" dst_port="in_top">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="r slow result right" src_port="out" dst_port="in_bot">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="OM left" size="1" url="LINsub.xml">
+            <Property name="inv_tau" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+            <Property name="b" dimension="?"/>
+            <LL:Input src="slow result left" src_port="out" dst_port="in_pos">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="r slow result left" src_port="out" dst_port="in_neg">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="fast result left" src_port="out" dst_port="in_pos">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="r fast result left" src_port="out" dst_port="in_neg">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="AV reg l">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="OM left to AV reg l Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1000"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="OM left to AV reg l Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="sub"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="AV prog l">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="OM left to AV prog l Synapse 0 weight_update" url="static_weight.xml" input_src_port="b" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1000"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="OM left to AV prog l Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="sub"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="AV reg l" size="1" url="divideandsub.xml">
+            <Property name="tau" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="min" dimension="?">
+                <FixedValue value="0.001"/>
+            </Property>
+            <Property name="top" dimension="?"/>
+            <Property name="bot" dimension="?"/>
+            <Property name="sub_sv" dimension="?"/>
+            <LL:Input src="r fast result left" src_port="out" dst_port="in_top">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="r slow result left" src_port="out" dst_port="in_bot">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="AV prog l" size="1" url="divideandsub1.xml">
+            <Property name="tau" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="min" dimension="?">
+                <FixedValue value="0.001"/>
+            </Property>
+            <Property name="top" dimension="?"/>
+            <Property name="bot" dimension="?"/>
+            <Property name="sub_sv" dimension="?"/>
+            <LL:Input src="fast result left" src_port="out" dst_port="in_top">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+            <LL:Input src="slow result left" src_port="out" dst_port="in_bot">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="CBL" size="16" url="LIN_threshold.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="start_a" dimension="?">
+                <UniformDistribution minimum="0" maximum="0.05" seed="0"/>
+            </Property>
+            <Property name="a" dimension="V"/>
+            <LL:Input src="rotate left" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <Connection src_neuron="0" dst_neuron="15"/>
+                    <Connection src_neuron="1" dst_neuron="0"/>
+                    <Connection src_neuron="2" dst_neuron="1"/>
+                    <Connection src_neuron="3" dst_neuron="2"/>
+                    <Connection src_neuron="4" dst_neuron="3"/>
+                    <Connection src_neuron="5" dst_neuron="4"/>
+                    <Connection src_neuron="6" dst_neuron="5"/>
+                    <Connection src_neuron="7" dst_neuron="6"/>
+                    <Connection src_neuron="8" dst_neuron="7"/>
+                    <Connection src_neuron="9" dst_neuron="8"/>
+                    <Connection src_neuron="10" dst_neuron="9"/>
+                    <Connection src_neuron="11" dst_neuron="10"/>
+                    <Connection src_neuron="12" dst_neuron="11"/>
+                    <Connection src_neuron="13" dst_neuron="12"/>
+                    <Connection src_neuron="14" dst_neuron="13"/>
+                    <Connection src_neuron="15" dst_neuron="14"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="rotate right" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <Connection src_neuron="0" dst_neuron="1"/>
+                    <Connection src_neuron="1" dst_neuron="2"/>
+                    <Connection src_neuron="2" dst_neuron="3"/>
+                    <Connection src_neuron="3" dst_neuron="4"/>
+                    <Connection src_neuron="4" dst_neuron="5"/>
+                    <Connection src_neuron="5" dst_neuron="6"/>
+                    <Connection src_neuron="6" dst_neuron="7"/>
+                    <Connection src_neuron="7" dst_neuron="8"/>
+                    <Connection src_neuron="8" dst_neuron="9"/>
+                    <Connection src_neuron="9" dst_neuron="10"/>
+                    <Connection src_neuron="10" dst_neuron="11"/>
+                    <Connection src_neuron="11" dst_neuron="12"/>
+                    <Connection src_neuron="12" dst_neuron="13"/>
+                    <Connection src_neuron="13" dst_neuron="14"/>
+                    <Connection src_neuron="14" dst_neuron="15"/>
+                    <Connection src_neuron="15" dst_neuron="0"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="ringxy.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="scale" dimension="?">
+                <FixedValue value="3"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+        <LL:Projection dst_population="CBL">
+            <LL:Synapse>
+                <ConnectionList>
+                    <BinaryFile file_name="connection94.bin" num_connections="336" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </ConnectionList>
+                <LL:WeightUpdate name="CBL to CBL Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <ValueList>
+                            <BinaryFile file_name="explicitDataBinaryFile0.bin" num_elements="336"/>
+                        </ValueList>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="CBL to CBL Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="ring direction">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="CBL to ring direction Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <ValueList>
+                            <Value index="0" value="-0.980785"/>
+                            <Value index="1" value="-0.83147"/>
+                            <Value index="2" value="-0.55557"/>
+                            <Value index="3" value="-0.19509"/>
+                            <Value index="4" value="0.19509"/>
+                            <Value index="5" value="0.55557"/>
+                            <Value index="6" value="0.83147"/>
+                            <Value index="7" value="0.980785"/>
+                            <Value index="8" value="0.980785"/>
+                            <Value index="9" value="0.83147"/>
+                            <Value index="10" value="0.55557"/>
+                            <Value index="11" value="0.19509"/>
+                            <Value index="12" value="-0.19509"/>
+                            <Value index="13" value="-0.55557"/>
+                            <Value index="14" value="-0.83147"/>
+                            <Value index="15" value="-0.980785"/>
+                        </ValueList>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="CBL to ring direction Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="x_in"/>
+            </LL:Synapse>
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="CBL to ring direction Synapse 1 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <ValueList>
+                            <Value index="0" value="-0.19509"/>
+                            <Value index="1" value="-0.55557"/>
+                            <Value index="2" value="-0.83147"/>
+                            <Value index="3" value="-0.980785"/>
+                            <Value index="4" value="-0.980785"/>
+                            <Value index="5" value="-0.83147"/>
+                            <Value index="6" value="-0.55557"/>
+                            <Value index="7" value="-0.19509"/>
+                            <Value index="8" value="0.19509"/>
+                            <Value index="9" value="0.55557"/>
+                            <Value index="10" value="0.83147"/>
+                            <Value index="11" value="0.980785"/>
+                            <Value index="12" value="0.980785"/>
+                            <Value index="13" value="0.83147"/>
+                            <Value index="14" value="0.55557"/>
+                            <Value index="15" value="0.19509"/>
+                        </ValueList>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="CBL to ring direction Synapse 1 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="y_in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="calc home">
+            <LL:Synapse>
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+                <LL:WeightUpdate name="CBL to calc home Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.1"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="CBL to calc home Synapse 0 postsynapse" url="gatedPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in">
+                    <LL:Input src="time since nest" src_port="out" dst_port="gate">
+                        <AllToAllConnection>
+                            <Delay Dimension="ms">
+                                <FixedValue value="0"/>
+                            </Delay>
+                        </AllToAllConnection>
+                    </LL:Input>
+                </LL:PostSynapse>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="rotate left" size="16" url="mult.xml">
+            <LL:Input src="CBL" src_port="out" dst_port="in_1">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="ringxy.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="scale" dimension="?">
+                <FixedValue value="4"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="rotate right" size="16" url="mult.xml">
+            <LL:Input src="CBL" src_port="out" dst_port="in_1">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="ringxy.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="scale" dimension="?">
+                <FixedValue value="4"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="Yaw" size="1" url="LINsub.xml">
+            <Property name="inv_tau" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+            <Property name="b" dimension="?"/>
+            <LL:Input src="AV reg r" src_port="out" dst_port="in_neg">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="AV reg l" src_port="out" dst_port="in_pos">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="AV prog r" src_port="out" dst_port="in_pos">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+            <LL:Input src="AV prog l" src_port="out" dst_port="in_neg">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="rotate right">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="Yaw to rotate right Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.014"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="Yaw to rotate right Synapse 0 postsynapse" url="raise_to_power.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in_2">
+                    <Property name="power" dimension="?">
+                        <FixedValue value="1"/>
+                    </Property>
+                </LL:PostSynapse>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="rotate left">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="Yaw to rotate left Synapse 0 weight_update" url="static_weight.xml" input_src_port="b" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.014"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="Yaw to rotate left Synapse 0 postsynapse" url="raise_to_power.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in_2">
+                    <Property name="power" dimension="?">
+                        <FixedValue value="1"/>
+                    </Property>
+                </LL:PostSynapse>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="random walk" size="1" url="randomwalk.xml">
+            <Property name="scale" dimension="?">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="yaw" dimension="?"/>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="ring direction" size="1" url="ringDir2.xml">
+            <Property name="prev_av" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="offset" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="test" dimension="?"/>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="reg l average" size="1" url="box_average.xml">
+            <Property name="start_t" dimension="?">
+                <FixedValue value="1000"/>
+            </Property>
+            <Property name="stop_t" dimension="?">
+                <FixedValue value="2000"/>
+            </Property>
+            <Property name="sum" dimension="?"/>
+            <LL:Input src="AV reg l" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="prog l average" size="1" url="box_average.xml">
+            <Property name="start_t" dimension="?">
+                <FixedValue value="1000"/>
+            </Property>
+            <Property name="stop_t" dimension="?">
+                <FixedValue value="2000"/>
+            </Property>
+            <Property name="sum" dimension="?"/>
+            <LL:Input src="AV prog l" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="prog r average" size="1" url="box_average.xml">
+            <Property name="start_t" dimension="?">
+                <FixedValue value="1000"/>
+            </Property>
+            <Property name="stop_t" dimension="?">
+                <FixedValue value="2000"/>
+            </Property>
+            <Property name="sum" dimension="?"/>
+            <LL:Input src="AV prog r" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="reg r average" size="1" url="box_average.xml">
+            <Property name="start_t" dimension="?">
+                <FixedValue value="1000"/>
+            </Property>
+            <Property name="stop_t" dimension="?">
+                <FixedValue value="2000"/>
+            </Property>
+            <Property name="sum" dimension="?"/>
+            <LL:Input src="AV reg r" src_port="out" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="Population" size="1" url="passthroughNB.xml">
+            <LL:Input src="r fast result left" src_port="out" dst_port="in">
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="test" size="1" url="derivative.xml">
+            <Property name="prev" dimension="?"/>
+            <Property name="out_r" dimension="?"/>
+            <Property name="out_l" dimension="?"/>
+            <LL:Input src="changes for batch" src_port="a" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="rotate left">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="test to rotate left Synapse 0 weight_update" url="static_weight.xml" input_src_port="out_l" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.7"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="test to rotate left Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in_2"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="rotate right">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="test to rotate right Synapse 0 weight_update" url="static_weight.xml" input_src_port="out_r" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.7"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="test to rotate right Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in_2"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="smoothR" size="1" url="LIN_threshold.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="200"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="0.7"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="start_a" dimension="?"/>
+            <Property name="a" dimension="V"/>
+            <LL:Input src="test" src_port="out_r" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="rotate right">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="smoothR to rotate right Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1.1"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="smoothR to rotate right Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in_2"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="smoothL" size="1" url="LIN_threshold.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="200"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="0.7"/>
+            </Property>
+            <Property name="c" dimension="?"/>
+            <Property name="start_a" dimension="?"/>
+            <Property name="a" dimension="V"/>
+            <LL:Input src="test" src_port="out_l" dst_port="in">
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="rotate left">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="smoothL to rotate left Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1.1"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="smoothL to rotate left Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in_2"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="landmark r" size="8" url="LIN_lb.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+            <LL:Input src="slow result right" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection111.bin" num_connections="768" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="r slow result right" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection112.bin" num_connections="768" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurveNeg.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="8"/>
+            </Property>
+            <Property name="space" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="curve" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+        <LL:Projection dst_population="CBL">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="landmark r to CBL Synapse 0 weight_update" url="learn_landmark_norm.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="alpha" dimension="?">
+                        <FixedValue value="0.004"/>
+                    </Property>
+                    <Property name="max_strength" dimension="?">
+                        <FixedValue value="0.02"/>
+                    </Property>
+                    <Property name="acquire_speedup" dimension="?">
+                        <FixedValue value="2"/>
+                    </Property>
+                    <Property name="theta" dimension="?">
+                        <FixedValue value="1"/>
+                    </Property>
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.05"/>
+                    </Property>
+                    <LL:Input src="CBL" src_port="out" dst_port="post">
+                        <OneToOneConnection>
+                            <Delay Dimension="ms">
+                                <FixedValue value="0"/>
+                            </Delay>
+                        </OneToOneConnection>
+                    </LL:Input>
+                    <LL:Input src="sumw right" src_port="out" dst_port="sum_w">
+                        <OneToOneConnection>
+                            <Delay Dimension="ms">
+                                <FixedValue value="0"/>
+                            </Delay>
+                        </OneToOneConnection>
+                    </LL:Input>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="landmark r to CBL Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="landmark r">
+            <LL:Synapse>
+                <ConnectionList>
+                    <BinaryFile file_name="connection95.bin" num_connections="56" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </ConnectionList>
+                <LL:WeightUpdate name="landmark r to landmark r Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="-10"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="landmark r to landmark r Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="landmark l">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="landmark r to landmark l Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="-10"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="landmark r to landmark l Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="landmark l" size="8" url="LIN_lb.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="10"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+            <LL:Input src="slow result left" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection113.bin" num_connections="768" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+            <LL:Input src="r slow result left" src_port="out" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection114.bin" num_connections="768" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="vertcurve.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="length" dimension="?">
+                <FixedValue value="8"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+        <LL:Projection dst_population="CBL">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="landmark l to CBL Synapse 0 weight_update" url="learn_landmark_norm.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="alpha" dimension="?">
+                        <FixedValue value="0.004"/>
+                    </Property>
+                    <Property name="max_strength" dimension="?">
+                        <FixedValue value="0.02"/>
+                    </Property>
+                    <Property name="acquire_speedup" dimension="?">
+                        <FixedValue value="2"/>
+                    </Property>
+                    <Property name="theta" dimension="?">
+                        <FixedValue value="1"/>
+                    </Property>
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.05"/>
+                    </Property>
+                    <LL:Input src="CBL" src_port="out" dst_port="post">
+                        <OneToOneConnection>
+                            <Delay Dimension="ms">
+                                <FixedValue value="0"/>
+                            </Delay>
+                        </OneToOneConnection>
+                    </LL:Input>
+                    <LL:Input src="sumw left" src_port="out" dst_port="sum_w">
+                        <OneToOneConnection>
+                            <Delay Dimension="ms">
+                                <FixedValue value="0"/>
+                            </Delay>
+                        </OneToOneConnection>
+                    </LL:Input>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="landmark l to CBL Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="landmark l">
+            <LL:Synapse>
+                <ConnectionList>
+                    <BinaryFile file_name="connection96.bin" num_connections="56" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </ConnectionList>
+                <LL:WeightUpdate name="landmark l to landmark l Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="-10"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="landmark l to landmark l Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="landmark r">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="landmark l to landmark r Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="-10"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="landmark l to landmark r Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="start_ring" size="1" url="impulse.xml">
+            <Property name="start_t" dimension="?">
+                <FixedValue value="2"/>
+            </Property>
+            <Property name="stop_t" dimension="?">
+                <FixedValue value="20"/>
+            </Property>
+            <Property name="value" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="out" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+        <LL:Projection dst_population="CBL">
+            <LL:Synapse>
+                <ConnectionList>
+                    <Connection src_neuron="0" dst_neuron="9" delay="0"/>
+                    <Connection src_neuron="0" dst_neuron="8" delay="0"/>
+                </ConnectionList>
+                <LL:WeightUpdate name="start_ring to CBL Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="start_ring to CBL Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="Home" size="16" url="LIN_threshold.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="start_a" dimension="?"/>
+            <Property name="a" dimension="V"/>
+        </LL:Neuron>
+        <Layout url="ringxy.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="scale" dimension="?">
+                <FixedValue value="3"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+        <LL:Projection dst_population="Home">
+            <LL:Synapse>
+                <ConnectionList>
+                    <BinaryFile file_name="connection98.bin" num_connections="336" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </ConnectionList>
+                <LL:WeightUpdate name="Home to Home Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <ValueList>
+                            <BinaryFile file_name="explicitDataBinaryFile1.bin" num_elements="336"/>
+                        </ValueList>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="Home to Home Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="home direction">
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="Home to home direction Synapse 0 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <ValueList>
+                            <Value index="0" value="-0.984808"/>
+                            <Value index="1" value="-0.866025"/>
+                            <Value index="2" value="-0.642788"/>
+                            <Value index="3" value="-0.34202"/>
+                            <Value index="4" value="0"/>
+                            <Value index="5" value="0.34202"/>
+                            <Value index="6" value="0.642788"/>
+                            <Value index="7" value="0.866025"/>
+                            <Value index="8" value="0.984808"/>
+                            <Value index="9" value="0.984808"/>
+                            <Value index="10" value="0.866025"/>
+                            <Value index="11" value="0.642788"/>
+                            <Value index="12" value="0.34202"/>
+                            <Value index="13" value="0"/>
+                            <Value index="14" value="-0.34202"/>
+                            <Value index="15" value="-0.642788"/>
+                        </ValueList>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="Home to home direction Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="x_in"/>
+            </LL:Synapse>
+            <LL:Synapse>
+                <AllToAllConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </AllToAllConnection>
+                <LL:WeightUpdate name="Home to home direction Synapse 1 weight_update" url="static_weight.xml" input_src_port="out" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <ValueList>
+                            <Value index="0" value="-0.173648"/>
+                            <Value index="1" value="-0.5"/>
+                            <Value index="2" value="-0.766044"/>
+                            <Value index="3" value="-0.939693"/>
+                            <Value index="4" value="-1"/>
+                            <Value index="5" value="-0.939693"/>
+                            <Value index="6" value="-0.766044"/>
+                            <Value index="7" value="-0.5"/>
+                            <Value index="8" value="-0.173648"/>
+                            <Value index="9" value="0.173648"/>
+                            <Value index="10" value="0.5"/>
+                            <Value index="11" value="0.766044"/>
+                            <Value index="12" value="0.939693"/>
+                            <Value index="13" value="1"/>
+                            <Value index="14" value="0.939693"/>
+                            <Value index="15" value="0.766044"/>
+                        </ValueList>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="Home to home direction Synapse 1 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="y_in"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="calc home" size="16" url="LIN.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="1000"/>
+            </Property>
+            <Property name="a" dimension="?"/>
+        </LL:Neuron>
+        <Layout url="ringxy.xml" seed="123" minimum_distance="0">
+            <Property name="numNeurons" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="scale" dimension="?">
+                <FixedValue value="3"/>
+            </Property>
+            <Property name="x" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="y" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="z" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="t" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+        </Layout>
+        <LL:Projection dst_population="calc home">
+            <LL:Synapse>
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </OneToOneConnection>
+                <LL:WeightUpdate name="calc home to calc home Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="1"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="calc home to calc home Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+        <LL:Projection dst_population="Home">
+            <LL:Synapse>
+                <OneToOneConnection>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0"/>
+                    </Delay>
+                </OneToOneConnection>
+                <LL:WeightUpdate name="calc home to Home Synapse 0 weight_update" url="static_weight.xml" input_src_port="a" input_dst_port="in">
+                    <Property name="w" dimension="?">
+                        <FixedValue value="0.1"/>
+                    </Property>
+                </LL:WeightUpdate>
+                <LL:PostSynapse name="calc home to Home Synapse 0 postsynapse" url="passthroughPS.xml" input_src_port="out" input_dst_port="in" output_src_port="out" output_dst_port="in"/>
+            </LL:Synapse>
+        </LL:Projection>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="time since nest" size="1" url="LIN_threshold.xml">
+            <Property name="tau" dimension="s">
+                <FixedValue value="100000"/>
+            </Property>
+            <Property name="m" dimension="?">
+                <FixedValue value="1"/>
+            </Property>
+            <Property name="c" dimension="?">
+                <FixedValue value="0"/>
+            </Property>
+            <Property name="start_a" dimension="?"/>
+            <Property name="a" dimension="V">
+                <FixedValue value="0.5"/>
+            </Property>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="home direction" size="1" url="ringDir2.xml">
+            <Property name="prev_av" dimension="?"/>
+            <Property name="offset" dimension="?"/>
+            <Property name="test" dimension="?"/>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="sumw left" size="8" url="passthroughNB.xml">
+            <LL:Input src="landmark l to CBL Synapse 0 weight_update" src_port="w" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection115.bin" num_connections="128" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+    <LL:Population>
+        <LL:Neuron name="sumw right" size="8" url="passthroughNB.xml">
+            <LL:Input src="landmark r to CBL Synapse 0 weight_update" src_port="w" dst_port="in">
+                <ConnectionList>
+                    <BinaryFile file_name="connection116.bin" num_connections="128" explicit_delay_flag="0" packed_data="true"/>
+                    <Delay Dimension="ms">
+                        <FixedValue value="0.1"/>
+                    </Delay>
+                </ConnectionList>
+            </LL:Input>
+        </LL:Neuron>
+        <Layout url="none.xml" seed="123" minimum_distance="0"/>
+    </LL:Population>
+</LL:SpineML>
