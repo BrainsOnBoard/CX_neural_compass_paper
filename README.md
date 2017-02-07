@@ -3,6 +3,10 @@ Full files for reproducing the experiments in the PLOS One paper: **A Computatio
 
 Linux only supported
 
+Video of the model:
+
+[![CX video](https://img.youtube.com/vi/qRafuME5wfU/0.jpg)](https://www.youtube.com/watch?v=qRafuME5wfU)
+
 ## Installing toolchain
 
 ### SpineML (simulation)
