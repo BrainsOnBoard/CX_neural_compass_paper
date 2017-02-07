@@ -1,0 +1,9 @@
+<LogReport>
+	<AnalogLog>
+		<LogFile>changes_for_batch_a_log.bin</LogFile>
+		<LogFileType>binary</LogFileType>
+		<LogEndTime>60000.000000</LogEndTime>
+		<LogAll size="1" headings="a" type="double" dims=""/>
+		<TimeStep dt="0.100000"/>
+	</AnalogLog>
+</LogReport>
